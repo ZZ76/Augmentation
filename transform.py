@@ -115,7 +115,7 @@ def showprogress(CNT, total):
         CHARLIST = randomchar(filled)
     else:
         CHARLIST = CHARLIST[:-3] + randomchar(filled-len(CHARLIST)+3)
-    print('\r[' + CHARLIST + '_' * (all - filled) + ']', end='')
+    print('\r[' + CHARLIST + '_' * (all - filled) + ']', end=' ')
     print(str(2 * filled).ljust(3), '/', 100, end='')
     print(', ', CNT, end='', flush=True)
 
