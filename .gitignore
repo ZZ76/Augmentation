@@ -1,0 +1,8 @@
+__pycache__/
+.idea/
+*.wmv
+*.psd
+*.jpg
+transform_private.py
+getnumber_for_testing.py
+Dataset_Vehicle/
