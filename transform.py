@@ -131,6 +131,7 @@ def operator(img_path, xml_path, repeat=1, save=False, vasulise=False):   # Tran
         dst = randomrun(filters.randomhsv, dst, p=pcolor)
         dst = randomrun(filters.blurcontroller, dst, p=pblur)
         dst = randomrun(filters.noisecontroller, dst, p=pnoise)
+        dst = randomrun(filters.togray, dst, p=pgray)
         #dst = randomrun(filters.linecirclecontroller, dst, p=pnoise)
         if save is True:
             # save img
@@ -208,13 +209,14 @@ pcolor = 0.4
 pblur = 0.4
 pnoise = 0.4
 pinvert = 0
+pgray = 0.3
 save = True
 
 if __name__ == "__main__":
     try:
         options, args = getopt.getopt(sys.argv[1:], "", ["save_anno_folder=", "save_image_folder=", "anno_folder=",
                                                          "image_folder=", "repeat=", "pcolor=",
-                                                         "pblur=", "pnoise=", "pinvert=", "format=", "CNT=", "save="])
+                                                         "pblur=", "pnoise=", "pinvert=", "pgray=", "format=", "CNT=", "save="])
     except getopt.GetoptError:
         sys.exit()
     for name, value in options:
@@ -236,6 +238,8 @@ if __name__ == "__main__":
             pnoise = float(value)
         if name in ("--pinvert"):
             pinvert = float(value)
+        if name in ("--pgray"):
+            pgray = float(value)
         if name in ("--save"):
             save = value
         if name in ("--format"):
@@ -251,6 +255,7 @@ if __name__ == "__main__":
     print('p_blur =', pblur)
     print('p_noise =', pnoise)
     print('p_invert =', pinvert)
+    print('pgray =', pgray)
     print('format =', format)
     print('CNT =', CNT)
     print('save =', save, "\n")

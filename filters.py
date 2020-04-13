@@ -6,6 +6,11 @@ import random
 import os
 
 # change color, blur, add noise...
+
+def togray(img):
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    
 def randomhsv(img):
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     h, s, v = cv2.split(hsv)
