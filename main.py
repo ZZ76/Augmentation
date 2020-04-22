@@ -186,7 +186,7 @@ if __name__ == "__main__":
             anno_folder = value
         if name in ("--image_folder"):
             image_folder = value
-        if name in ("--l"):
+        if name in ("--repeat"):
             repeat = int(value)
         if name in ("--pcolor"):
             pcolor = float(value)
