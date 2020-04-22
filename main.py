@@ -152,14 +152,14 @@ colors_plasma = colors_subselect(mpcm.plasma.colors, num_classes=15)
 # windows
 anno_folder = './Dataset_Vehicle/labels'
 image_folder = './Dataset_Vehicle/images'
-save_anno_folder = './Dataset_Vehicle/save_aug/labels'
-save_image_folder = './Dataset_Vehicle/save_aug/images'
+save_anno_folder = './Dataset_Vehicle/augmented/labels'
+save_image_folder = './Dataset_Vehicle/augmented/images'
 repeat = 1
 # ubuntu
 # anno_folder = '/home/user/dataset/annotations'   # annotations folder
 # image_folder = '/home/user/dataset/images'   # image folder
-# save_anno_folder = '/home/user/dataset/save_aug/annotations'  # save annotations folder
-# save_image_folder = '/home/user/dataset/save_aug/images'  # save image folder
+# save_anno_folder = '/home/user/dataset/augmented/annotations'  # save annotations folder
+# save_image_folder = '/home/user/dataset/augmented/images'  # save image folder
 # l = 4
 
 CNT = 0  # used by procress bar
