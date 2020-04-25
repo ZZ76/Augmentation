@@ -5,7 +5,7 @@ import numpy as np
 from lxml.etree import Element, SubElement, tostring, ElementTree
 
 
-def findelementbyname(name, obj):
+def findelementbyname(obj, name):
     for i in obj.iter(name):
         #print(i.text)
         return i.text
@@ -18,11 +18,11 @@ def getcoordandname(filename):  # return a list with name and coord
     for child in root.iter('object'):
         #print(child)
         #print(child.tag, child.attrib)
-        name = findelementbyname('name', child)
-        xmin = findelementbyname('xmin', child)
-        ymin = findelementbyname('ymin', child)
-        xmax = findelementbyname('xmax', child)
-        ymax = findelementbyname('ymax', child)
+        name = findelementbyname(child, 'name')
+        xmin = findelementbyname(child, 'xmin')
+        ymin = findelementbyname(child, 'ymin')
+        xmax = findelementbyname(child, 'xmax')
+        ymax = findelementbyname(child, 'ymax')
         returnlist.append([name, int(xmin), int(ymin), int(xmax), int(ymax)])
     #print(returnlist)
     return returnlist
