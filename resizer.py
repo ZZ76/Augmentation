@@ -50,11 +50,11 @@ def xml_resize(file_path, file_name_only):
     for child in root.iter('size'):
         width = int(findelementbyname(child, 'width'))
         height = int(findelementbyname(child, 'height'))
-        if MINIMUN_SIDE:  # decide which method to use
+        if MINIMUM_SIDE:  # decide which method to use
             if width >= height:  # use height as minimum side
-                x_factor, y_factor = MINIMUN_SIDE/height, MINIMUN_SIDE/height
+                x_factor, y_factor = MINIMUM_SIDE/height, MINIMUM_SIDE/height
             else:
-                x_factor, y_factor = MINIMUN_SIDE/width, MINIMUN_SIDE/width
+                x_factor, y_factor = MINIMUM_SIDE/width, MINIMUM_SIDE/width
         else:
             x_factor, y_factor = RESIZE_X/width, RESIZE_Y/height
         OUT_X, OUT_Y = int(width * x_factor), int(height * y_factor)
@@ -120,7 +120,7 @@ SAVE_ANNO_FOLDER = None
 SAVE_IMAGE_FOLDER = None
 TOTAL = 0
 RESIZE_X, RESIZE_Y = None, None
-MINIMUN_SIDE = None
+MINIMUM_SIDE = None
 CHARLIST = ""
 CNT = 0
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
     if args.resize_xy:
         RESIZE_X, RESIZE_Y = args.resize_xy[0], args.resize_xy[1]
     if args.minimum_side:
-        MINIMUN_SIDE = args.minimum_side
+        MINIMUM_SIDE = args.minimum_side
     print("anno_folder = {}".format(ANNO_FOLDER))
     print("image_folder = {}".format(IMAGE_FOLDER))
     print("save_anno_folder = {}".format(SAVE_ANNO_FOLDER))
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     if RESIZE_X:
         print("resize_x = {}, resize_y = {}".format(RESIZE_X, RESIZE_Y))
     else:
-        print("minimun_side = {}".format(MINIMUN_SIDE))
+        print("minimum_side = {}".format(MINIMUM_SIDE))
     #print('save =', SAVE, "\n")
     main()
 
