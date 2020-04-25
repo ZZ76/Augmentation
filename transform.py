@@ -36,7 +36,7 @@ def affinelist(objlist, M):
 
 def randomperspect(img, objlist):   # random perspective transform and generate new coord list
     h, w, _ = img.shape
-    p = 1/30   # changing rate
+    p = 1/35   # changing rate
     r_h, r_w = int(h*p), int(w*p)   # changing range of width and height
     startpts = np.float32([[r_w, r_h], [w-r_w, r_h], [w-r_w, h-r_h], [r_w, h-r_h]])
     endpts = np.float32([[r_w+rd(r_w), r_h+rd(r_h)], [w-r_w+rd(r_w), r_h+rd(r_h)], [w-r_w+rd(r_w), h-r_h+rd(r_h)], [r_w+rd(r_w), h-r_h+rd(r_h)]])

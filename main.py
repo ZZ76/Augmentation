@@ -119,7 +119,7 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
             TOTAL += 1
     TOTAL = TOTAL*(repeat+1)
     for file in os.listdir(anno_path):   # scan in Annotations folder
-        if not os.path.isdir(file):
+        if os.path.isfile(os.path.join(anno_path, file)):
             if file[-4:] == '.xml':   # check xml file
                 jpg_name = file[:-4]+'.'+format
                 jpg_file_path = os.path.join(jpg_path, jpg_name)
