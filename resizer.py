@@ -47,37 +47,41 @@ def xml_resize(file_path, file_name_only):
     root = tree.getroot()
     returnlist = []
     x_factor, y_factor = 1, 1
-    for child in root.iter('size'):
-        width = int(findelementbyname(child, 'width'))
-        height = int(findelementbyname(child, 'height'))
-        if MINIMUM_SIDE:  # decide which method to use
-            if width >= height:  # use height as minimum side
-                x_factor, y_factor = MINIMUM_SIDE/height, MINIMUM_SIDE/height
+    try:
+        for child in root.iter('size'):
+            width = int(findelementbyname(child, 'width'))
+            height = int(findelementbyname(child, 'height'))
+            if MINIMUM_SIDE:  # decide which method to use
+                if width >= height:  # use height as minimum side
+                    x_factor, y_factor = MINIMUM_SIDE/height, MINIMUM_SIDE/height
+                else:
+                    x_factor, y_factor = MINIMUM_SIDE/width, MINIMUM_SIDE/width
             else:
-                x_factor, y_factor = MINIMUM_SIDE/width, MINIMUM_SIDE/width
-        else:
-            x_factor, y_factor = RESIZE_X/width, RESIZE_Y/height
-        OUT_X, OUT_Y = int(width * x_factor), int(height * y_factor)
-        changetextbyname(child, 'width', OUT_X)
-        changetextbyname(child, 'height', OUT_Y)
-    # print(width, height)
-    # print(OUT_X, OUT_Y)
-    for child in root.iter('object'):
-        #for i in ['xmin', 'ymin', 'xmax', 'ymax']:
-        #name = findelementbyname(child, 'name')
-        xmin = int(findelementbyname(child, 'xmin'))
-        changetextbyname(child, 'xmin', int(xmin * x_factor))
-        ymin = int(findelementbyname(child, 'ymin'))
-        changetextbyname(child, 'ymin', int(ymin * y_factor))
-        xmax = int(findelementbyname(child, 'xmax'))
-        changetextbyname(child, 'xmax', int(xmax * x_factor))
-        ymax = int(findelementbyname(child, 'ymax'))
-        changetextbyname(child, 'ymax', int(ymax * y_factor))
-        #returnlist.append([name, int(xmin), int(ymin), int(xmax), int(ymax)])
-        #print(name, xmin, ymin, xmax, ymax)
-    #print(returnlist)
-    #return returnlist
-    tree.write(os.path.join(SAVE_ANNO_FOLDER, file_name_only), xml_declaration=False, encoding='utf-8')
+                x_factor, y_factor = RESIZE_X/width, RESIZE_Y/height
+            OUT_X, OUT_Y = int(width * x_factor), int(height * y_factor)
+            changetextbyname(child, 'width', OUT_X)
+            changetextbyname(child, 'height', OUT_Y)
+        # print(width, height)
+        # print(OUT_X, OUT_Y)
+        for child in root.iter('object'):
+            #for i in ['xmin', 'ymin', 'xmax', 'ymax']:
+            #name = findelementbyname(child, 'name')
+            xmin = int(findelementbyname(child, 'xmin'))
+            changetextbyname(child, 'xmin', int(xmin * x_factor))
+            ymin = int(findelementbyname(child, 'ymin'))
+            changetextbyname(child, 'ymin', int(ymin * y_factor))
+            xmax = int(findelementbyname(child, 'xmax'))
+            changetextbyname(child, 'xmax', int(xmax * x_factor))
+            ymax = int(findelementbyname(child, 'ymax'))
+            changetextbyname(child, 'ymax', int(ymax * y_factor))
+            #returnlist.append([name, int(xmin), int(ymin), int(xmax), int(ymax)])
+            #print(name, xmin, ymin, xmax, ymax)
+        #print(returnlist)
+        #return returnlist
+        tree.write(os.path.join(SAVE_ANNO_FOLDER, file_name_only), xml_declaration=False, encoding='utf-8')
+    except Exception as e:
+        print("\n", file_path)
+        print(str(e))
     
     
 def image_resize(file_path, file_name_only):
@@ -102,10 +106,14 @@ def main():
         if os.path.isfile(os.path.join(ANNO_FOLDER, file)) and file[-4:] == '.xml':
             CNT += 1
             if os.path.isfile(os.path.join(IMAGE_FOLDER, file[:-4]+".jpg")):  # check image file exist
-                #print(file)
-                OUT_X, OUT_Y = None, None
-                xml_resize(os.path.join(ANNO_FOLDER, file), file)
-                image_resize(os.path.join(IMAGE_FOLDER, file[:-4]+".jpg"), file[:-4]+".jpg")
+                try:
+                    #print(file)
+                    OUT_X, OUT_Y = None, None
+                    xml_resize(os.path.join(ANNO_FOLDER, file), file)
+                    image_resize(os.path.join(IMAGE_FOLDER, file[:-4]+".jpg"), file[:-4]+".jpg")
+                except Exception as e:
+                    print("\n", file)
+                    print(str(e))
             showprogress(CNT, TOTAL)
 
 
