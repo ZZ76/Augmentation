@@ -146,7 +146,7 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                     #print('\n', file, 'is not a xml file')
     except Exception as e:
         print(str(e))
-    print('\ngenerated {} images'.format())
+    print('\ngenerated {} images'.format(CNT))
 
 
 CHARLIST = ''   # for progressbar
