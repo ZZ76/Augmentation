@@ -115,7 +115,7 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
         if not os.path.isdir(save_anno_folder):
             os.makedirs(save_anno_folder)
     for file in os.listdir(anno_path):
-        if os.path.isfile(file) and file[-4]=='.xml':
+        if os.path.isfile(file) and file[-4:]=='.xml':
             TOTAL += 1
     TOTAL = TOTAL*(repeat+1)
     for file in os.listdir(anno_path):   # scan in Annotations folder
