@@ -45,7 +45,6 @@ def xml_resize(file_path, file_name_only):
     global OUT_X, OUT_Y
     tree = ET.parse(file_path)
     root = tree.getroot()
-    returnlist = []
     x_factor, y_factor = 1, 1
     try:
         for child in root.iter('size'):
@@ -74,10 +73,6 @@ def xml_resize(file_path, file_name_only):
             changetextbyname(child, 'xmax', int(xmax * x_factor))
             ymax = int(findelementbyname(child, 'ymax'))
             changetextbyname(child, 'ymax', int(ymax * y_factor))
-            #returnlist.append([name, int(xmin), int(ymin), int(xmax), int(ymax)])
-            #print(name, xmin, ymin, xmax, ymax)
-        #print(returnlist)
-        #return returnlist
         tree.write(os.path.join(SAVE_ANNO_FOLDER, file_name_only), xml_declaration=False, encoding='utf-8')
     except Exception as e:
         print("\n", file_path)
