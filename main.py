@@ -141,9 +141,9 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                         operator(jpg_file_path, xml_file_path, repeat, vasulise=True)
                 else:
                     print(jpg_file_path, 'not exists')
-            else:
-                print('\n', file, 'is not a xml file')
-    print('\ngenerated %d images' % CNT)
+            #else:
+                #print('\n', file, 'is not a xml file')
+    print('\ngenerated {} images'.format())
 
 
 CHARLIST = ''   # for progressbar
@@ -162,7 +162,7 @@ repeat = 1
 # image_folder = '/home/user/dataset/images'   # image folder
 # save_anno_folder = '/home/user/dataset/augmented/annotations'  # save annotations folder
 # save_image_folder = '/home/user/dataset/augmented/images'  # save image folder
-# l = 4
+# repeat = 4
 
 CNT = 0  # used by procress bar
 pcolor = 0.4
