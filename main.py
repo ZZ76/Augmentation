@@ -145,6 +145,7 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                 #else:
                     #print('\n', file, 'is not a xml file')   
         except Exception as e:
+            print('\n', file)
             print(str(e))
     print('\ngenerated {} images'.format(CNT))
 
