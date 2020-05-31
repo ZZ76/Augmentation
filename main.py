@@ -118,8 +118,8 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
         if os.path.isfile(os.path.join(anno_path, file)) and file[-4:]=='.xml':
             TOTAL += 1
     TOTAL = TOTAL*(repeat+1)
-    try:
-        for file in os.listdir(anno_path):   # scan in Annotations folder
+    for file in os.listdir(anno_path):   # scan in Annotations folder
+        try:
             if os.path.isfile(os.path.join(anno_path, file)):
                 if file[-4:] == '.xml':   # check xml file
                     jpg_name = file[:-4]+'.'+format
@@ -143,9 +143,9 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                     else:
                         print(jpg_file_path, 'not exists')
                 #else:
-                    #print('\n', file, 'is not a xml file')
-    except Exception as e:
-        print(str(e))
+                    #print('\n', file, 'is not a xml file')   
+        except Exception as e:
+            print(str(e))
     print('\ngenerated {} images'.format(CNT))
 
 
