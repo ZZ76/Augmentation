@@ -118,31 +118,34 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
         if os.path.isfile(os.path.join(anno_path, file)) and file[-4:]=='.xml':
             TOTAL += 1
     TOTAL = TOTAL*(repeat+1)
-    for file in os.listdir(anno_path):   # scan in Annotations folder
-        if os.path.isfile(os.path.join(anno_path, file)):
-            if file[-4:] == '.xml':   # check xml file
-                jpg_name = file[:-4]+'.'+format
-                jpg_file_path = os.path.join(jpg_path, jpg_name)
-                #print('jpg', jpg_file_path)
-                xml_file_path = os.path.join(anno_path, file)
-                #print('xml', xml_file_path)
-                if os.path.exists(jpg_file_path):   # check if jpg file exists
-                    if save is True:
-                        img_copy_path = save_image_folder + '/' + str(CNT).zfill(5) + '.' + format
-                        copyfile(jpg_file_path, img_copy_path)   # copy jpg
-                        save_path = save_anno_folder + '/' + str(CNT).zfill(5) + '.xml'
-                        #xmlopt.rewriteheadlines((str(CNT).zfill(5) + '.' + format), img_copy_path, xml_file_path, save_path, save=True)  # rewrite xml headlines
-                        #copyfile(xml_file_path, copy_path)   # copy xml
-                        #xml_file_path = save_path
-                        showprogress(CNT, TOTAL)
-                        CNT += 1
-                        operator(jpg_file_path, xml_file_path, repeat, save=True, vasulise=False)
+    try:
+        for file in os.listdir(anno_path):   # scan in Annotations folder
+            if os.path.isfile(os.path.join(anno_path, file)):
+                if file[-4:] == '.xml':   # check xml file
+                    jpg_name = file[:-4]+'.'+format
+                    jpg_file_path = os.path.join(jpg_path, jpg_name)
+                    #print('jpg', jpg_file_path)
+                    xml_file_path = os.path.join(anno_path, file)
+                    #print('xml', xml_file_path)
+                    if os.path.exists(jpg_file_path):   # check if jpg file exists
+                        if save is True:
+                            img_copy_path = save_image_folder + '/' + str(CNT).zfill(5) + '.' + format
+                            copyfile(jpg_file_path, img_copy_path)   # copy jpg
+                            save_path = save_anno_folder + '/' + str(CNT).zfill(5) + '.xml'
+                            #xmlopt.rewriteheadlines((str(CNT).zfill(5) + '.' + format), img_copy_path, xml_file_path, save_path, save=True)  # rewrite xml headlines
+                            #copyfile(xml_file_path, copy_path)   # copy xml
+                            #xml_file_path = save_path
+                            showprogress(CNT, TOTAL)
+                            CNT += 1
+                            operator(jpg_file_path, xml_file_path, repeat, save=True, vasulise=False)
+                        else:
+                            operator(jpg_file_path, xml_file_path, repeat, vasulise=True)
                     else:
-                        operator(jpg_file_path, xml_file_path, repeat, vasulise=True)
-                else:
-                    print(jpg_file_path, 'not exists')
-            #else:
-                #print('\n', file, 'is not a xml file')
+                        print(jpg_file_path, 'not exists')
+                #else:
+                    #print('\n', file, 'is not a xml file')
+    except Exception as e:
+        print(str(e))
     print('\ngenerated {} images'.format())
 
 
