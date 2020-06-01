@@ -131,9 +131,9 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                         if save is True:
                             img_copy_path = save_image_folder + '/' + str(CNT).zfill(5) + '.' + format
                             copyfile(jpg_file_path, img_copy_path)   # copy jpg
-                            save_path = save_anno_folder + '/' + str(CNT).zfill(5) + '.xml'
+                            xml_copy_path = save_anno_folder + '/' + str(CNT).zfill(5) + '.xml'
                             #xmlopt.rewriteheadlines((str(CNT).zfill(5) + '.' + format), img_copy_path, xml_file_path, save_path, save=True)  # rewrite xml headlines
-                            #copyfile(xml_file_path, copy_path)   # copy xml
+                            copyfile(xml_file_path, xml_copy_path)   # copy xml
                             #xml_file_path = save_path
                             showprogress(CNT, TOTAL)
                             CNT += 1
