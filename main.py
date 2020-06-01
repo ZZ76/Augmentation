@@ -132,9 +132,9 @@ def readfilesandoprt(repeat=1, save=False):   # walk through the folder to find 
                             img_copy_path = save_image_folder + '/' + str(CNT).zfill(5) + '.' + format
                             copyfile(jpg_file_path, img_copy_path)   # copy jpg
                             xml_copy_path = save_anno_folder + '/' + str(CNT).zfill(5) + '.xml'
-                            #xmlopt.rewriteheadlines((str(CNT).zfill(5) + '.' + format), img_copy_path, xml_file_path, save_path, save=True)  # rewrite xml headlines
+                            xmlopt.rewriteheadlines((str(CNT).zfill(5) + '.' + format), img_copy_path, xml_file_path, save_path, save=True)  # rewrite xml headlines with new name
                             copyfile(xml_file_path, xml_copy_path)   # copy xml
-                            #xml_file_path = save_path
+                            xml_file_path = xml_copy_path
                             showprogress(CNT, TOTAL)
                             CNT += 1
                             operator(jpg_file_path, xml_file_path, repeat, save=True, vasulise=False)
